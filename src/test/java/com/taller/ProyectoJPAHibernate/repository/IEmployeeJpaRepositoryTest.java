@@ -1,6 +1,8 @@
 package com.taller.ProyectoJPAHibernate.repository;
 
 import com.taller.ProyectoJPAHibernate.model.Employee;
+import com.taller.ProyectoJPAHibernate.model.Project;
+import com.taller.ProyectoJPAHibernate.model.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -22,19 +24,53 @@ class IEmployeeJpaRepositoryTest {
  *
  */
     @Autowired
-    private IEmployeeJpaRepository repo;
+    private IEmployeeJpaRepository repoEmpl;
+
+    @Autowired
+    private IRoleJpaRepository repoRole;
+
+    @Autowired
+    private IProjectJpaRepository repoProj;
+
 
     @Test
     public void saveEmployee(){
-        Employee john = new Employee("John", "Smith", "empl123");
-        Employee claire = new Employee("Claire", "Simpson", "empl124");
 
-        repo.save(john);
-        repo.save(claire);
+        Role admin = new Role("ROLE_ADMIN");
+        Role dev = new Role("ROLE_DEV");
 
-        repo.flush();
+        admin = repoRole.save(admin);
+        dev = repoRole.save(dev);
 
-        assertEquals(2,repo.findAll().size());
+        Project proj1 = new Project("proj1");
+        Project proj2 = new Project("proj2");
+        Project proj3 = new Project("proj3");
+
+        proj1 = repoProj.save(proj1);
+        proj2 = repoProj.save(proj2);
+        proj3 = repoProj.save(proj3);
+
+
+        Employee john = new Employee("John", "Smith", "empl123",admin);
+        Employee claire = new Employee("Claire", "Simpson", "empl124",dev);
+
+        john.getProjects().add(proj1);
+        john.getProjects().add(proj2);
+
+        claire.getProjects().add(proj1);
+        claire.getProjects().add(proj2);
+        claire.getProjects().add(proj3);
+
+
+        repoEmpl.save(john);
+        repoEmpl.save(claire);
+
+        repoEmpl.flush();
+
+        Employee empl124 = repoEmpl.findByEmployeeId("empl124");
+        assertEquals("Claire",empl124.getFirstName());
+        assertEquals(2,repoEmpl.findAll().size());
+        assertEquals(dev,empl124.getRole());
 
     }
 }
