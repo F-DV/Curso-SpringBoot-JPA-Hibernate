@@ -23,7 +23,7 @@ public interface IEmployeeJpaRepository extends JpaRepository<Employee, Long> {
      * @param lastName : String de apellifo
      * @return Lista con apellidos
      */
-    List<Employee> findbyeLastName(String lastName);
+    List<Employee> findByLastName(String lastName);
 
     /**
      *
