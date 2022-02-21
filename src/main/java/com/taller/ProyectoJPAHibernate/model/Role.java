@@ -12,7 +12,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 5,nullable = false,unique = true)
+    @Column(length = 15,nullable = false,unique = true)
     private String firstName;
 
     /**
