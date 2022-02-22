@@ -13,7 +13,7 @@ public class Role {
     private Long id;
 
     @Column(length = 15,nullable = false,unique = true)
-    private String firstName;
+    private String name;
 
     /**
      * Constructor Vacio
@@ -23,10 +23,10 @@ public class Role {
 
     /**
      * Constructor con el nombre del role
-     * @param firstName : Strin nombre del Role
+     * @param name : Strin nombre del Role
      */
-    public Role(String firstName) {
-        this.firstName = firstName;
+    public Role(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -37,19 +37,19 @@ public class Role {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getname() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setname(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
+                ", firstName='" + name + '\'' +
                 '}';
     }
 }
