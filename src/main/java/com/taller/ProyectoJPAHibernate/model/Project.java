@@ -3,6 +3,7 @@ package com.taller.ProyectoJPAHibernate.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Proyecto")
 public class Project {
     /**
      * En esta entidad configuramos el id que se auto genera y el nombre del project
@@ -12,7 +13,7 @@ public class Project {
     private Long id;
 
     @Column(length = 15,nullable = false,unique = true)
-    private String firstName;
+    private String name;
 
     /**
      * Constructor vacio
@@ -23,8 +24,8 @@ public class Project {
     /**
      * Constructor que pide inicializar el nombre del project
      */
-    public Project(String firstName) {
-        this.firstName = firstName;
+    public Project(String name) {
+        this.name = name;
     }
 
     /**
@@ -38,19 +39,19 @@ public class Project {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
+                ", firstName='" + name + '\'' +
                 '}';
     }
 }
