@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class RoleService {
@@ -31,6 +32,26 @@ public class RoleService {
         return (ArrayList<Role>) iroleJpaRepository.findAll();
     }
 
+    /**
+     * Obtener role por id
+     * Return : retorna role que encuentra por id
+     */
+    public Optional<Role> obtenerPorId(Long id){
+        return iroleJpaRepository.findById(id);
+    }
 
+    /**
+     *
+     * @param id :  del rol a eliminar
+     * @return Retorna verdadero si elimina y falso si no elimina el Rol
+     */
+    public boolean eliminarRol(long id){
+        try{
+            iroleJpaRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            return false;
+        }
+    }
 
 }

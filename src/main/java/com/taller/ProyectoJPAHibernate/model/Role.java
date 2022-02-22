@@ -3,6 +3,7 @@ package com.taller.ProyectoJPAHibernate.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Rol")
 public class Role {
 
     /**
